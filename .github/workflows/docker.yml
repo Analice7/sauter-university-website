@@ -24,15 +24,14 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Build Docker image
-      run: docker build . -t analice7/sauter-university-website:latest
-
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+    - name: Build Docker image
+      run: docker build . -t analice7/sauter-university-website:latest
+
     - name: Push Docker image
       run: docker push analice7/sauter-university-website:latest
-
