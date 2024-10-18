@@ -15,8 +15,8 @@ COPY logo.png .
 FROM nginx:alpine
 
 # Copia os arquivos construídos da etapa anterior
-COPY --from=builder /app/index.html /usr/share/nginx/html/index.html
-COPY --from=builder /app/logo.png /usr/share/nginx/html/logo.png
+COPY --from=build /app/index.html /usr/share/nginx/html/index.html
+COPY --from=build /app/logo.png /usr/share/nginx/html/logo.png
 
 # Exclui arquivos de exemplo do Nginx (opcional)
 RUN rm -rf /usr/share/nginx/html/*
